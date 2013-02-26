@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>hotkey</title>
+    <style type="text/css">
+        #test {
+            width: 300px;
+            height: 300px;
+            background-color: #ddd;
+            overflow: auto;
+        }
+
+        body {
+            font: 12px Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+    <script type="text/javascript" src="hotkey.1.0.1.js"></script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var elem = document.getElementById('test');
+
+        var keyGroup1 = 't e s t';
+        var ht = new Hotkey({
+            elem:elem,
+            timeout:1000,
+            onSuccess:function () {
+                var oh = elem.innerHTML;
+                elem.innerHTML = '<b style="color:green;">success "' + keyGroup1 + '"</b><br />' + oh;
+            }
+        });
+
+        ht.listen(keyGroup1);
+
+        var keyGroup2 = 'c @ ?';
+        var ht2 = new Hotkey({
+            elem:elem,
+            timeout:1000,
+            onSuccess:function () {
+                var oh = elem.innerHTML;
+                elem.innerHTML = '<b style="color:green;">success "' + keyGroup2 + '"</b><br />' + oh;
+            }
+        });
+
+        ht2.listen(keyGroup2);
+
+        var keyGroup3 = 'CTRL shift up';
+        var ht3 = new Hotkey({
+            elem:elem,
+            timeout:1000,
+            onSuccess:function () {
+                var oh = elem.innerHTML;
+                elem.innerHTML = '<b style="color:green;">success "' + keyGroup3 + '"</b><br />' + oh;
+            },
+            onDebug:function (key, error) {
+                var oh = elem.innerHTML;
+                elem.innerHTML = '<b>key:</b> ' + key + '&nbsp;&nbsp;&nbsp;<b>error:</b> ' + error + '<br />' + oh;
+            }
+        });
+
+        ht3.listen(keyGroup3);
+
+    };
+</script>
+</html>
