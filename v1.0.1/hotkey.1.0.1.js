@@ -253,7 +253,7 @@
     };
 
     Hotkey.prototype._bindKeyPress = function () {
-        if (type(this._currentKeyDownListener) == type.FUNCTION) {
+        if (type(this._currentKeyPressListener) == type.FUNCTION) {
             unbind(this._config.elem, 'keypress', this._currentKeyPressListener);
         }
 
